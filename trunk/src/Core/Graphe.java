@@ -2,6 +2,10 @@ package Core;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a Graph.
+ *
+ */
 public class Graphe {
 	
 	private ArrayList<Sommet> listeAdjacence;
