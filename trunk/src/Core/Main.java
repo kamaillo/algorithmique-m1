@@ -1,19 +1,21 @@
 package Core;
 
 public class Main {
-
-	/**
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 		
-		Graphe g = Parser.parse("/home/etudiant/Master1/Algorithmique des graphes/Projet_Coloration_Arbre/r213.col.txt");
+		// Parsing Graph file
+		Graphe g = Parser.parse("/home/etudiant/r125.col");
 		
-		int t[] = new int[g.getNbSommets()];
-		t = Algorithme.Welsh_Powell(g);
+		// Calculating Graph coloration
+		int[] result = Algorithme.Welsh_Powell(g);
 		
-		for(int i=0; i<t.length; i++)
-			System.out.print(" " + t[i] + " ");
+		// Saving result
+		Parser.saveResult(result, "/home/etudiant/r125.col.result");
+		
+		// Debug display
+		for(int i=0; i<result.length; i++)
+			System.out.print(" " + result[i] + " ");
 	}
 	
 }
