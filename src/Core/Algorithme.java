@@ -1,9 +1,11 @@
 package Core;
 
+
+
 public class Algorithme {
 
-	public static Object Welsh_Powell(Graphe graph)
+	public static void Welsh_Powell(String file_url)
 	{
-		return null;
+		
 	}
 }
