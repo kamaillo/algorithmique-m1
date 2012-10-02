@@ -45,7 +45,9 @@ public class Sommet{
 	}
 	
 	public int degreSommet(){
-		return this.m_adjacents.size();
+		if(this.m_adjacents != null)
+			return this.m_adjacents.size();
+		return 0;
 	}
 
 }

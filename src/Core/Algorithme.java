@@ -8,27 +8,8 @@ import java.util.Comparator;
 
 public class Algorithme {
 
-	public static void Welsh_Powell(String file_url)
-	{
-		Graphe g = new Graphe(6);
-		
-		g.getListeAdjacence().get(0).ajouterSommetAdjacent(g.getListeAdjacence().get(2));
-		g.getListeAdjacence().get(2).ajouterSommetAdjacent(g.getListeAdjacence().get(0));
-		g.getListeAdjacence().get(0).ajouterSommetAdjacent(g.getListeAdjacence().get(1));
-		g.getListeAdjacence().get(1).ajouterSommetAdjacent(g.getListeAdjacence().get(0));
-		g.getListeAdjacence().get(2).ajouterSommetAdjacent(g.getListeAdjacence().get(1));
-		g.getListeAdjacence().get(1).ajouterSommetAdjacent(g.getListeAdjacence().get(2));
-		g.getListeAdjacence().get(2).ajouterSommetAdjacent(g.getListeAdjacence().get(3));
-		g.getListeAdjacence().get(3).ajouterSommetAdjacent(g.getListeAdjacence().get(2));
-		g.getListeAdjacence().get(2).ajouterSommetAdjacent(g.getListeAdjacence().get(5));
-		g.getListeAdjacence().get(5).ajouterSommetAdjacent(g.getListeAdjacence().get(2));
-		g.getListeAdjacence().get(3).ajouterSommetAdjacent(g.getListeAdjacence().get(5));
-		g.getListeAdjacence().get(5).ajouterSommetAdjacent(g.getListeAdjacence().get(3));
-		g.getListeAdjacence().get(3).ajouterSommetAdjacent(g.getListeAdjacence().get(4));
-		g.getListeAdjacence().get(4).ajouterSommetAdjacent(g.getListeAdjacence().get(3));
-		g.getListeAdjacence().get(4).ajouterSommetAdjacent(g.getListeAdjacence().get(5));
-		g.getListeAdjacence().get(5).ajouterSommetAdjacent(g.getListeAdjacence().get(4));
-		
+	public static void Welsh_Powell(Graphe g)
+	{	
 		
 		Collections.<Sommet>sort(g.getListeAdjacence(), new SommetComparator());
 		
