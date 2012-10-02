@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 public class Algorithme {
 
-	public static void Welsh_Powell(Graphe g)
+	public static int[] Welsh_Powell(Graphe g)
 	{	
 		
 		Collections.<Sommet>sort(g.getListeAdjacence(), new SommetComparator());
@@ -39,6 +39,14 @@ public class Algorithme {
 			
 		}
 		
+		Collections.<Sommet>sort(g.getListeAdjacence(), new SommetNumberComparator());
+		
 		System.out.println("K = "+nombre_couleurs);
+		
+		int tableau_coloration[] = new int[g.getNbSommets()];
+		for(int l=0; l< tableau_coloration.length; ++l){
+			tableau_coloration[l] = g.getListeAdjacence().get(l).getCouleur();
+		}
+		return tableau_coloration;
 	}
 }

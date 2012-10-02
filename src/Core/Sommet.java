@@ -63,3 +63,15 @@ class SommetComparator implements Comparator<Sommet>{
 	}
 	
 }
+
+class SommetNumberComparator implements Comparator<Sommet>{
+	
+	public int compare(Sommet a, Sommet b){
+		int numero1 = a.getNumero(); 
+		int numero2 = b.getNumero(); 
+		if (numero1 > numero2)  return -1; 
+		else if(numero1 == numero2) return 0; 
+		else return 1; 
+	}
+	
+}
