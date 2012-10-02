@@ -8,7 +8,7 @@ public class Main {
 		Graphe g = Parser.parse("/home/etudiant/r125.col");
 		
 		// Calculating Graph coloration
-		int[] result = Algorithme.Welsh_Powell(g);
+		int[] result = Algorithme.welshPowell(g);
 		
 		// Saving result
 		Parser.saveResult(result, "/home/etudiant/r125.col.result");
