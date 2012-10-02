@@ -1,21 +1,24 @@
 package Core;
 
 public class Main {
-	
+
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
-		// Parsing Graph file
-		Graphe g = Parser.parse("/home/etudiant/r125.col");
+		String url_graph_file = args[1];
+		String url_coloration_file = args[2];
 		
-		// Calculating Graph coloration
-		int[] result = Algorithme.welshPowell(g);
+		Graphe g = Parser.parse(url_graph_file);
 		
-		// Saving result
-		Parser.saveResult(result, "/home/etudiant/r125.col.result");
+		int t[] = new int[g.getNbSommets()];
+		t = Algorithme.welshPowell(g);
 		
-		// Debug display
-		for(int i=0; i<result.length; i++)
-			System.out.print(" " + result[i] + " ");
+		for(int i=0; i<t.length; i++)
+			System.out.print(" " + t[i] + " ");
+		
+		Parser.saveResult(t, url_coloration_file);
 	}
 	
 }
