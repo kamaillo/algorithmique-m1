@@ -6,7 +6,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Graphe g = Parser.parse("/home/etudiant/r125.col");
+		g.getClass();
 		Algorithme.Welsh_Powell("test");
 	}
 	

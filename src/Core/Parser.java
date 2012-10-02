@@ -172,9 +172,28 @@ public class Parser {
 		g.setNbSommets(col[0]);
 	}
 	
+	/**
+	 * Add edges to the Graph using an edge line.
+	 * @param edgeLine
+	 * A string representing the edge-line to add.
+	 * @param g
+	 * Target Graph of the add operation.
+	 */
 	protected static void AddEdge(String edgeLine, Graphe g)
 	{
-		
+		if (g != null)
+		{
+			int[] edges = parseEdgeLine(edgeLine);
+			
+			if (edges != null)
+			{
+				Sommet _first = g.getListeAdjacence().get(edges[0]-1);
+				Sommet _second = g.getListeAdjacence().get(edges[1]-1);
+				
+				_first.ajouterSommetAdjacent(_second);
+				_second.ajouterSommetAdjacent(_first);
+			}
+		}
 	}
 	
 	/**
@@ -187,7 +206,7 @@ public class Parser {
 		// Line represents an edge
 		if (isEdgeLine(line))
 		{
-			
+			AddEdge(line,g);
 		}
 		// Line represents the summary edge
 		else if (isSummaryLine(line))
