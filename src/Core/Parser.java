@@ -1,11 +1,15 @@
 package Core;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 /**
  * Provides methods for retrieve and parse a Graph file with standard format
@@ -21,6 +25,53 @@ public class Parser {
 	 */
 	private Parser()
 	{}
+	
+	/**
+	 * Save result array into a text file.
+	 * @param result
+	 * Resulting array to save.
+	 * @param fileDestination
+	 * Full destination path file.
+	 */
+	public static void saveResult(int[] result, String fileDestination)
+	{
+		// Creates a new file
+		File _file = new File(fileDestination);
+		FileWriter _fileWriter;
+		
+		try
+		{
+			// Writes on file and erase if exists
+			_fileWriter = new FileWriter(_file, false);
+			BufferedWriter _bufferedWriter = new BufferedWriter (_fileWriter);
+			PrintWriter _printWriter = new PrintWriter(_bufferedWriter); 
+			
+			// Construct our datum
+			StringBuilder _stringBuilder = new StringBuilder(50);
+			for (int i=0; i<result.length; i++)
+			{
+				_stringBuilder.append(" ");
+				_stringBuilder.append(String.valueOf(result[i]));
+			}
+			
+			// Writes our datum.
+			_printWriter.println(_stringBuilder.toString()); 
+			
+			// Close readers
+			_printWriter.close();
+			_bufferedWriter.close();
+			_fileWriter.close();
+			
+			// null them for speed-up Garbage collection.
+			_printWriter = null;
+			_bufferedWriter = null;
+			_fileWriter = null;
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * Parse a text file that represents a Graph in standard mode.
