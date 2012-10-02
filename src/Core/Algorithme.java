@@ -2,11 +2,22 @@ package Core;
 
 import java.util.Collections;
 
+/**
+ * Provides methods for calculate a Graph coloration.
+ */
 public class Algorithme {
 
-	public static int[] Welsh_Powell(Graphe g)
+	/**
+	 * Use an implementation of Welsh-Powell algorithme to determine a Graph coloration.
+	 * @param g
+	 * Target Graph for Welsh-Powell algorithme.
+	 * @return
+	 * Returns an array of integer, where each distinct integer is a distinct color.
+	 * Note that result array is sorted by edges number.
+	 */
+	public static int[] welshPowell(Graphe g)
 	{	
-		
+		// Sort edges by degrees
 		Collections.<Sommet>sort(g.getListeAdjacence(), new SommetComparator());
 		
 		int nombre_couleurs = 0;
