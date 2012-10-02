@@ -7,6 +7,9 @@ public class Graphe {
 	private ArrayList<Sommet> listeAdjacence;
 	private int nb_sommets;
 	
+	public Graphe()
+	{}
+	
 	public Graphe(int nb_sommets){
 		this.nb_sommets = nb_sommets;
 		this.listeAdjacence = new ArrayList<Sommet>();
@@ -22,6 +25,11 @@ public class Graphe {
 	
 	public void setNbSommets(int nb_sommets){
 		this.nb_sommets = nb_sommets;
+		this.listeAdjacence = new ArrayList<Sommet>();
+		for(int i=1; i<=this.nb_sommets; ++i){
+			this.listeAdjacence.add(new Sommet(i));
+			this.listeAdjacence.get(i-1).setNumero(i);
+		}
 	}
 	
 	public boolean ajouterSommetListeAdjacence(Sommet s){

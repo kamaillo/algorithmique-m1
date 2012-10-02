@@ -169,6 +169,12 @@ public class Parser {
 	protected static void InitializeGraph(String summaryLine, Graphe g)
 	{
 		int[] col = parseSummaryLine(summaryLine);
+		g.setNbSommets(col[0]);
+	}
+	
+	protected static void AddEdge(String edgeLine, Graphe g)
+	{
+		
 	}
 	
 	/**
@@ -201,7 +207,7 @@ public class Parser {
 	 */
 	protected static Graphe parseGraphe(BufferedReader buff) throws IOException
 	{
-		Graphe g = new Graphe(0);
+		Graphe g = new Graphe();
 		
 		String line = null;	// Current line of file.
 		
