@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * Provides methods for retrieve and parse a Graph file with standard format
@@ -33,7 +34,7 @@ public class Parser {
 	 * @param fileDestination
 	 * Full destination path file.
 	 */
-	public static void saveResult(int[] result, String fileDestination)
+	public static void saveResult(ArrayList<Integer> result, int k, String fileDestination)
 	{
 		// Creates a new file
 		File _file = new File(fileDestination);
@@ -48,14 +49,16 @@ public class Parser {
 			
 			// Construct our datum
 			StringBuilder _stringBuilder = new StringBuilder(50);
-			for (int i=0; i<result.length; i++)
+			_stringBuilder.append(String.valueOf(k));
+			_stringBuilder.append("\n");
+			for (int i=0; i<result.size(); i++)
 			{
 				_stringBuilder.append(" ");
-				_stringBuilder.append(String.valueOf(result[i]));
+				_stringBuilder.append(String.valueOf(result.get(i)));
 			}
 			
 			// Writes our datum.
-			_printWriter.println(_stringBuilder.toString()); 
+			_printWriter.print(_stringBuilder.toString()); 
 			
 			// Close readers
 			_printWriter.close();

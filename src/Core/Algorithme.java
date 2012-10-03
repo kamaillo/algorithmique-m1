@@ -1,5 +1,6 @@
 package Core;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 /**
@@ -15,7 +16,7 @@ public class Algorithme {
 	 * Returns an array of integer, where each distinct integer is a distinct color.
 	 * Note that result array is sorted by edges number.
 	 */
-	public static int[] welshPowell(Graphe g)
+	public static int welshPowell(Graphe g, ArrayList<Integer> resultArray)
 	{	
 		// Sort edges by degrees
 		Collections.<Sommet>sort(g.getListeAdjacence(), new SommetComparator());
@@ -48,12 +49,13 @@ public class Algorithme {
 		
 		Collections.<Sommet>sort(g.getListeAdjacence(), new SommetNumberComparator());
 		
-		System.out.println("K = "+nombre_couleurs);
-		
-		int tableau_coloration[] = new int[g.getNbSommets()];
-		for(int l=0; l< tableau_coloration.length; ++l){
-			tableau_coloration[l] = g.getListeAdjacence().get(l).getCouleur();
+		if (resultArray == null) resultArray = new ArrayList<Integer>();
+		int nbSommets = g.getNbSommets();
+		for(int l=0; l < nbSommets; ++l)
+		{
+			resultArray.add(g.getListeAdjacence().get(l).getCouleur());
 		}
-		return tableau_coloration;
+		
+		return nombre_couleurs;
 	}
 }

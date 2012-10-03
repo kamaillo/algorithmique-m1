@@ -1,5 +1,7 @@
 package Core;
 
+import java.util.ArrayList;
+
 public class Main {
 	
 	/**
@@ -43,6 +45,11 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * Parse main arguments
+	 * @param args
+	 * Command-line arguments
+	 */
 	public static void parseArgs(String[] args)
 	{
 		int params = args.length;
@@ -50,6 +57,7 @@ public class Main {
 		String inputPath = null;
 		String outputPath = null;
 		boolean displayResult = false;
+		boolean error = false;
 		
 		// Test each argument and parse it if correct
 		for (int i = 0; i < params; i++)
@@ -58,6 +66,8 @@ public class Main {
 		    if (args[i].equals("-?") || args[i].equals("-h"))
 		    {
 		    	System.out.println(HELP_STRING);
+		    	error = true;
+		    	break;
 		    }
 		    // Input
 		    else if (args[i].equals("-i") && (i+1<params))
@@ -82,17 +92,20 @@ public class Main {
 		    	System.out.println("ERROR: invalid parameter \"" + args[i] + "\"" + NEW_LINE +
 		    			"Usage: " + USAGE_STRING + NEW_LINE +
 		    			"See help for details");
+		    	error = true;
+		    	break;
 		    }
 		}
 		
-		// An input file has been specified
-		if (inputPath != null)
+		// An input file has been specified and there is no interruption
+		if (inputPath != null && !error)
 		{
 			// Parse Graph file
 			Graphe g = Parser.parse(inputPath);
 			
 			// Calculate Graph coloration
-			int[] result = Algorithme.welshPowell(g);
+			ArrayList<Integer> result = new ArrayList<Integer>();
+			int k = Algorithme.welshPowell(g,result);
 			
 			// Coloration produce a result
 			if (result != null)
@@ -100,14 +113,15 @@ public class Main {
 				// Save result in output file
 				if (outputPath != null)
 				{
-					Parser.saveResult(result, outputPath);
+					Parser.saveResult(result, k, outputPath);
 				}
 				// Display result in standard output
 				if (displayResult)
 				{
-					for(int i=0; i<result.length; i++)
+					System.out.println("K = " + k + NEW_LINE);
+					for(int i=0; i<result.size(); i++)
 					{
-						System.out.print(" " + result[i]);
+						System.out.print(" " + result.get(i));
 					}
 					System.out.print(NEW_LINE);
 				}
